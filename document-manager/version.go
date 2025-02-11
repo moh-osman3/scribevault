@@ -1,5 +1,9 @@
 package diff
 
+import (
+    "time"
+)
+
 type Version struct {
     versionNumber int64
     document *Document
@@ -16,7 +20,7 @@ type Document struct {
 
 type diffFunction func(s1, s2 string) (string, string)
 
-type versionInterface interface {
+type Versioner interface {
     getDocumentBody(v *Version) string
     diffVersions(fn diffFunction, v1, v2 *Version) (plusDoc Document, minusDoc Document)
     getLatestVersion(documentName string) *Version
