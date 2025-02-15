@@ -6,7 +6,7 @@ import (
 
 type Line struct {
 	linenumber int
-	text string
+	text       string
 }
 
 func diffLines(s1, s2 string) ([]Line, []Line) {
@@ -18,8 +18,8 @@ func diffLines(s1, s2 string) ([]Line, []Line) {
 	l1 := len(sLines1)
 	l2 := len(sLines2)
 
-	minLen := min(l1,l2)
-	maxLen := max(l1,l2)
+	minLen := min(l1, l2)
+	maxLen := max(l1, l2)
 
 	for i := 0; i < maxLen; i++ {
 		if i < minLen && sLines1[i] == sLines2[i] {
@@ -29,7 +29,7 @@ func diffLines(s1, s2 string) ([]Line, []Line) {
 		if i < l2 {
 			plusLine := Line{
 				linenumber: i,
-				text: sLines2[i],
+				text:       sLines2[i],
 			}
 			plus = append(plus, plusLine)
 		}
@@ -37,7 +37,7 @@ func diffLines(s1, s2 string) ([]Line, []Line) {
 		if i < l1 {
 			minusLine := Line{
 				linenumber: i,
-				text: sLines1[i],
+				text:       sLines1[i],
 			}
 			minus = append(minus, minusLine)
 		}
