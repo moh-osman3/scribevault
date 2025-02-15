@@ -1,38 +1,38 @@
 package diff
 
 import (
-   "testing"
-   "github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestDiffLines(t *testing.T) {
-   s1 := "I\nam\na\nman\n"
-   s2 := "The\ndog\nis\nman\n"
-   
-   plus, minus := diffLines(s1, s2)
+	s1 := "I\nam\na\nman\n"
+	s2 := "The\ndog\nis\nman\n"
 
-   expectedMinus := []Line{
-       {linenumber: 0, text: "I"},
-       {linenumber: 1, text: "am"},
-       {linenumber: 2, text: "a"},
-   }
+	plus, minus := diffLines(s1, s2)
 
-   expectedPlus := []Line{
-       {linenumber: 0, text: "The"},
-       {linenumber: 1, text: "dog"},
-       {linenumber: 2, text: "is"},
-   }
+	expectedMinus := []Line{
+		{linenumber: 0, text: "I"},
+		{linenumber: 1, text: "am"},
+		{linenumber: 2, text: "a"},
+	}
 
-   assert.Equal(t, len(expectedMinus), len(minus))
-   assert.Equal(t, len(expectedPlus), len(plus))
+	expectedPlus := []Line{
+		{linenumber: 0, text: "The"},
+		{linenumber: 1, text: "dog"},
+		{linenumber: 2, text: "is"},
+	}
 
-   for i := range expectedMinus {
-       assert.Equal(t, expectedMinus[i].linenumber, minus[i].linenumber)
-       assert.Equal(t, expectedMinus[i].text, minus[i].text)
-   }
+	assert.Equal(t, len(expectedMinus), len(minus))
+	assert.Equal(t, len(expectedPlus), len(plus))
 
-   for i := range expectedPlus {
-       assert.Equal(t, expectedPlus[i].linenumber, plus[i].linenumber)
-       assert.Equal(t, expectedPlus[i].text, plus[i].text)
-   }
+	for i := range expectedMinus {
+		assert.Equal(t, expectedMinus[i].linenumber, minus[i].linenumber)
+		assert.Equal(t, expectedMinus[i].text, minus[i].text)
+	}
+
+	for i := range expectedPlus {
+		assert.Equal(t, expectedPlus[i].linenumber, plus[i].linenumber)
+		assert.Equal(t, expectedPlus[i].text, plus[i].text)
+	}
 }
